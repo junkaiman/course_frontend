@@ -1,91 +1,75 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="top-banner">
+    👨‍💻 course.gallinula.com is under development. Expected to release before session 4!
+    <a href="https://afdian.net/a/hi_keon">
+      ☕️ Buy me a coffee to make it earlier!
+    </a>
+  </div>
+  <div class="menu">
+    <Menubar :model="items" />
+  </div>
+  <div class="main">
+    <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        {
+          label: "Home",
+          icon: "pi pi-fw pi-home",
+          to: "/",
+        },
+        {
+          label: "Courses",
+          icon: "pi pi-fw pi-align-center",
+          to: "/view",
+        },
+        {
+          label: "Write Review",
+          icon: "pi pi-fw pi-pencil",
+          to: "/post",
+          style: "",
+        },
+        {
+          label: "About",
+          icon: "pi pi-fw pi-info-circle",
+          to: "/about",
+        },
+      ],
+    };
+  },
+};
+</script>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+<style>
+.main {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  font-size: 12px;
+  /* margin: 1rem; */
+}
+
+.top-banner {
+  /* margin-bottom: 30px; */
   text-align: center;
-  margin-top: 2rem;
+  padding: 0.5rem;
+  justify-content: center;
+  height: 100%;
+  background-color: #ea4c4c;
+  color: white;
+  font-size: 1.1rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.top-banner a {
+  color: white;
+  text-decoration: underline;
 }
 </style>

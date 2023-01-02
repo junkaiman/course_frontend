@@ -1,0 +1,593 @@
+{
+    "root": [
+      {
+        "key": "0",
+        "label": "ARHU",
+        "selectable": false,
+        "children": [
+          {
+            "key": "0-1",
+            "label": "ARHU 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "1",
+        "label": "BEHAVSCI",
+        "selectable": false,
+        "children": [
+          {
+            "key": "1-1",
+            "label": "BEHAVSCI 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "2",
+        "label": "BIOL",
+        "selectable": false,
+        "children": [
+          {
+            "key": "2-1",
+            "label": "BIOL 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "3",
+        "label": "CAPSTONE",
+        "selectable": false,
+        "children": [
+          {
+            "key": "3-1",
+            "label": "CAPSTONE 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "4",
+        "label": "CHEM",
+        "selectable": false,
+        "children": [
+          {
+            "key": "4-1",
+            "label": "CHEM 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "5",
+        "label": "CHINESE",
+        "selectable": false,
+        "children": [
+          {
+            "key": "5-1",
+            "label": "CHINESE 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "6",
+        "label": "COMPSCI",
+        "selectable": false,
+        "children": [
+          {
+            "key": "6-1",
+            "label": "COMPSCI 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "7",
+        "label": "CULANTH",
+        "selectable": false,
+        "children": [
+          {
+            "key": "7-1",
+            "label": "CULANTH 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "8",
+        "label": "CULMOVE",
+        "selectable": false,
+        "children": [
+          {
+            "key": "8-1",
+            "label": "CULMOVE 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "9",
+        "label": "ECON",
+        "selectable": false,
+        "children": [
+          {
+            "key": "9-1",
+            "label": "ECON 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "10",
+        "label": "ECE",
+        "selectable": false,
+        "children": [
+          {
+            "key": "10-1",
+            "label": "ECE 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "11",
+        "label": "EAP",
+        "selectable": false,
+        "children": [
+          {
+            "key": "11-1",
+            "label": "EAP 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "12",
+        "label": "ENVIR",
+        "selectable": false,
+        "children": [
+          {
+            "key": "12-1",
+            "label": "ENVIR 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "13",
+        "label": "ETHLDR",
+        "selectable": false,
+        "children": [
+          {
+            "key": "13-1",
+            "label": "ETHLDR 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "14",
+        "label": "FRENCH",
+        "selectable": false,
+        "children": [
+          {
+            "key": "14-1",
+            "label": "FRENCH 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "15",
+        "label": "GERMAN",
+        "selectable": false,
+        "children": [
+          {
+            "key": "15-1",
+            "label": "GERMAN 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "16",
+        "label": "GCHINA",
+        "selectable": false,
+        "children": [
+          {
+            "key": "16-1",
+            "label": "GCHINA 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "17",
+        "label": "GCULS",
+        "selectable": false,
+        "children": [
+          {
+            "key": "17-1",
+            "label": "GCULS 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "18",
+        "label": "GLHLTH",
+        "selectable": false,
+        "children": [
+          {
+            "key": "18-1",
+            "label": "GLHLTH 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "19",
+        "label": "HIST",
+        "selectable": false,
+        "children": [
+          {
+            "key": "19-1",
+            "label": "HIST 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "20",
+        "label": "INDSTU",
+        "selectable": false,
+        "children": [
+          {
+            "key": "20-1",
+            "label": "INDSTU 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "21",
+        "label": "INFOSCI",
+        "selectable": false,
+        "children": [
+          {
+            "key": "21-1",
+            "label": "INFOSCI 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "22",
+        "label": "INSTGOV",
+        "selectable": false,
+        "children": [
+          {
+            "key": "22-1",
+            "label": "INSTGOV 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "23",
+        "label": "ITALIAN",
+        "selectable": false,
+        "children": [
+          {
+            "key": "23-1",
+            "label": "ITALIAN 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "24",
+        "label": "JAPANESE",
+        "selectable": false,
+        "children": [
+          {
+            "key": "24-1",
+            "label": "JAPANESE 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "25",
+        "label": "KOREAN",
+        "selectable": false,
+        "children": [
+          {
+            "key": "25-1",
+            "label": "KOREAN 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "26",
+        "label": "LIT",
+        "selectable": false,
+        "children": [
+          {
+            "key": "26-1",
+            "label": "LIT 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "27",
+        "label": "MATSCI",
+        "selectable": false,
+        "children": [
+          {
+            "key": "27-1",
+            "label": "MATSCI 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "28",
+        "label": "MATH",
+        "selectable": false,
+        "children": [
+          {
+            "key": "28-1",
+            "label": "MATH 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "29",
+        "label": "MEDIART",
+        "selectable": false,
+        "children": [
+          {
+            "key": "29-1",
+            "label": "MEDIART 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "30",
+        "label": "MEDPHY",
+        "selectable": false,
+        "children": [
+          {
+            "key": "30-1",
+            "label": "MEDPHY 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "31",
+        "label": "MINITERM",
+        "selectable": false,
+        "children": [
+          {
+            "key": "31-1",
+            "label": "MINITERM 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "32",
+        "label": "MUSIC",
+        "selectable": false,
+        "children": [
+          {
+            "key": "32-1",
+            "label": "MUSIC 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "33",
+        "label": "NEUROSCI",
+        "selectable": false,
+        "children": [
+          {
+            "key": "33-1",
+            "label": "NEUROSCI 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "34",
+        "label": "PHIL",
+        "selectable": false,
+        "children": [
+          {
+            "key": "34-1",
+            "label": "PHIL 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "35",
+        "label": "PHYSEDU",
+        "selectable": false,
+        "children": [
+          {
+            "key": "35-1",
+            "label": "PHYSEDU 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "36",
+        "label": "PHYS",
+        "selectable": false,
+        "children": [
+          {
+            "key": "36-1",
+            "label": "PHYS 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "37",
+        "label": "POLECON",
+        "selectable": false,
+        "children": [
+          {
+            "key": "37-1",
+            "label": "POLECON 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "38",
+        "label": "POLSCI",
+        "selectable": false,
+        "children": [
+          {
+            "key": "38-1",
+            "label": "POLSCI 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "39",
+        "label": "PSYCH",
+        "selectable": false,
+        "children": [
+          {
+            "key": "39-1",
+            "label": "PSYCH 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "40",
+        "label": "PUBPOL",
+        "selectable": false,
+        "children": [
+          {
+            "key": "40-1",
+            "label": "PUBPOL 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "41",
+        "label": "RELIG",
+        "selectable": false,
+        "children": [
+          {
+            "key": "41-1",
+            "label": "RELIG 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "42",
+        "label": "RINDSTU",
+        "selectable": false,
+        "children": [
+          {
+            "key": "42-1",
+            "label": "RINDSTU 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "43",
+        "label": "SOSC",
+        "selectable": false,
+        "children": [
+          {
+            "key": "43-1",
+            "label": "SOSC 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "44",
+        "label": "SOCIOL",
+        "selectable": false,
+        "children": [
+          {
+            "key": "44-1",
+            "label": "SOCIOL 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "45",
+        "label": "SPANISH",
+        "selectable": false,
+        "children": [
+          {
+            "key": "45-1",
+            "label": "SPANISH 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "46",
+        "label": "STATS",
+        "selectable": false,
+        "children": [
+          {
+            "key": "46-1",
+            "label": "STATS 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "47",
+        "label": "USTUD",
+        "selectable": false,
+        "children": [
+          {
+            "key": "47-1",
+            "label": "USTUD 101",
+            "data": "1000"
+          }
+        ]
+      },
+      {
+        "key": "48",
+        "label": "WOC",
+        "selectable": false,
+        "children": [
+          {
+            "key": "48-1",
+            "label": "WOC 101",
+            "data": "1000"
+          }
+        ]
+      }
+    ]
+  }
+  

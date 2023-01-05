@@ -26,9 +26,10 @@ var colors = ['#003a81', '#006f3f'];
     requestAnimationFrame(frame);
   }
 }());
+</script>
 
-
-
+<script>
+import SearchBox from '../components/SearchBox.vue'
 </script>
 
 <template>
@@ -47,12 +48,14 @@ var colors = ['#003a81', '#006f3f'];
       <br />
       This is a internal platform for students at Duke Kunshan University to anonymously review courses and professors.
     </div>
-    <div class="search">
+    <!-- <div class="search">
       <span class="p-input-icon-left">
         <InputText class="p-inputtext-lg" type="text" v-model="value1" placeholder="Search"/>
         <i class="pi pi-search" />
       </span>
-    </div>
+    </div> -->
+    <SearchBox />
+    <!-- <ListBox></ListBox> -->
     <div class="chips">
       <Chip>Course Reviews</Chip>
       <Chip>Syllabus</Chip>
@@ -65,7 +68,7 @@ var colors = ['#003a81', '#006f3f'];
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital@0;1&family=PT+Mono&family=Pacifico&display=swap');
 
 main {
   display: flex;

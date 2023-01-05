@@ -1,6 +1,7 @@
 <script setup>
 import CoursesNavBar from "../components/CoursesNavBar.vue";
 import StatsChart from "../components/StatsChart.vue";
+import ReviewCard from "../components/ReviewCard.vue";
 </script>
 
 <template>
@@ -26,7 +27,7 @@ import StatsChart from "../components/StatsChart.vue";
         <div class="faculties">
           <b>Who have taught this class?</b>
           <br />
-          <Chip label="John Doe" />
+          <Chip class="chip-button" label="John Doe" />
           <Chip label="Amy Liu" />
         </div>
         <!-- <Fieldset legend="Resources" :toggleable="true"></Fieldset> -->
@@ -34,34 +35,35 @@ import StatsChart from "../components/StatsChart.vue";
     </div>
     <div class="resources">
       <Fieldset legend="Resources" :toggleable="true">
-        <Button class="p-button-secondary">📄 Syllabus (2020 Fall)</Button>&nbsp;
+        <Button class="p-button-secondary">📄 Syllabus (2020 Fall)</Button>
         <Button class="p-button-secondary">📄 Syllabus (2021 Fall)</Button>
       </Fieldset>
     </div>
     <div class="stats">
       <Fieldset legend="Statistics" :toggleable="true">
-        <div style="display: flex; flex-direction: row; align-items: center;">
+        <div style="display: flex; flex-direction: row; align-items: center">
           <StatsChart />
         </div>
-      
       </Fieldset>
     </div>
     <div class="reviews">
-      <Fieldset legend="Reviews" :toggleable="true" :collapsed="true">
+      <Fieldset legend="Reviews" :toggleable="true" :collapsed="false">
         <Accordion>
           <AccordionTab>
             <template #header>
               <i class="pi pi-user"></i> &nbsp;
               <span>John Doe</span>
             </template>
-            Content
+            <ReviewCard />
+            <ReviewCard />
           </AccordionTab>
           <AccordionTab>
             <template #header>
               <i class="pi pi-user"></i> &nbsp;
               <span>Amy Liu</span>
             </template>
-            Content
+            <ReviewCard />
+            <ReviewCard />
           </AccordionTab>
         </Accordion>
       </Fieldset>
@@ -69,15 +71,14 @@ import StatsChart from "../components/StatsChart.vue";
   </div>
 </template>
 
-<style>
-b {
-  font-weight: bold;
+<style scoped>
+Button {
+  margin: 0 0.15rem;
+  /* padding: 3rem; */
 }
 
 .left {
   width: 40%;
-  /* height: 80vh; */
-  /* background-color: #f0f0f0; */
   float: left;
 }
 
@@ -93,9 +94,5 @@ b {
 }
 .p-fieldset-content > div {
   margin: 0.5rem 0 1rem 0;
-}
-Button {
-  margin: 0 1rem;
-  padding: 3rem;
 }
 </style>

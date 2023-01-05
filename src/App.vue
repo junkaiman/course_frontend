@@ -1,60 +1,32 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import TopMenuBar from "./components/TopMenuBar.vue";
 </script>
 
 <template>
   <div class="top-banner">
-    👨‍💻 course.gallinula.com is under development. Expected to release before session 4!
+    👨‍💻 course.gallinula.com is under development. Expected to release before
+    session 4!
     <a href="https://afdian.net/a/hi_keon">
       ☕️ Buy me a coffee to make it earlier!
     </a>
   </div>
-  <div class="menu">
-    <Menubar :model="items" />
-  </div>
-  <div class="main">
-    <RouterView />
-  </div>
+  <div class="menu"><TopMenuBar /></div>
+  <div class="main"><RouterView /></div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      items: [
-        {
-          label: "Home",
-          icon: "pi pi-fw pi-home",
-          to: "/",
-        },
-        {
-          label: "Courses",
-          icon: "pi pi-fw pi-align-center",
-          to: "/view",
-        },
-        {
-          label: "Write Review",
-          icon: "pi pi-fw pi-pencil",
-          to: "/post",
-          style: "",
-        },
-        {
-          label: "About",
-          icon: "pi pi-fw pi-info-circle",
-          to: "/about",
-        },
-      ],
-    };
-  },
-};
-</script>
+<script></script>
 
 <style>
 .main {
   display: flex;
   flex-direction: row;
   width: 100%;
-  /* margin: 1rem; */
+  justify-content: center;
+}
+
+b {
+  font-weight: bold;
 }
 
 .top-banner {

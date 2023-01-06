@@ -25,6 +25,9 @@ import Tooltip from 'primevue/tooltip';
 import Textarea from 'primevue/textarea';
 import Carousel from 'primevue/carousel';
 import VirtualScroller from 'primevue/virtualscroller';
+import OverlayPanel from 'primevue/overlaypanel';
+import Divider from 'primevue/divider';
+
 
 import App from "./App.vue";
 import router from "./router";
@@ -64,6 +67,8 @@ app.component("Textarea", Textarea);
 app.directive('tooltip', Tooltip);
 app.component("Carousel", Carousel);
 app.component("VirtualScroller", VirtualScroller);
+app.component("OverlayPanel", OverlayPanel);
+app.component("Divider", Divider);
 
 
 app.mount("#app");

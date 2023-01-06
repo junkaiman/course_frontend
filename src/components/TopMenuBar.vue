@@ -52,12 +52,18 @@ export default {
         {
           label: "Courses",
           icon: "pi pi-fw pi-align-center",
-          to: "/view/82ddfb3af8",
+          to: "/view/1",
         },
         {
           label: "Write Review",
           icon: "pi pi-fw pi-pencil",
           to: "/post/1",
+          style: "",
+        },
+        {
+          label: "Upload Syllabus",
+          icon: "pi pi-fw pi-upload",
+          to: "/upload",
           style: "",
         },
         {

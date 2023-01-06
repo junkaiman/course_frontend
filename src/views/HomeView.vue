@@ -1,8 +1,8 @@
 <script setup>
-import confetti from 'canvas-confetti'
-var end = Date.now() + (4 * 1000);
+import confetti from "canvas-confetti";
+var end = Date.now() + 4 * 1000;
 // go DKU!
-var colors = ['#003a81', '#006f3f'];
+var colors = ["#003a81", "#006f3f"];
 
 (function frame() {
   confetti({
@@ -11,7 +11,7 @@ var colors = ['#003a81', '#006f3f'];
     spread: 35,
     startVelocity: 70,
     origin: { x: 0, y: 0.95 },
-    colors: colors
+    colors: colors,
   });
   confetti({
     particleCount: 2,
@@ -19,17 +19,17 @@ var colors = ['#003a81', '#006f3f'];
     spread: 35,
     startVelocity: 70,
     origin: { x: 1, y: 0.95 },
-    colors: colors
+    colors: colors,
   });
 
   if (Date.now() < end) {
     requestAnimationFrame(frame);
   }
-}());
+})();
 </script>
 
 <script>
-import SearchBox from '../components/SearchBox.vue'
+import SearchBox from "../components/SearchBox.vue";
 </script>
 
 <template>
@@ -37,16 +37,15 @@ import SearchBox from '../components/SearchBox.vue'
     <div class="welcome">
       <h1>🦆Welcome!</h1>
     </div>
-    <div class="ad">
-      course.gallinula.com
-    </div>
+    <div class="ad">course.gallinula.com</div>
     <div class="mobile_na">
-      Mobile version is not supported yet.
-      Please open the website with desktop browser.
+      Mobile version is not supported yet. Please open the website with desktop
+      browser.
     </div>
     <div class="slot">
       <br />
-      This is a internal platform for students at Duke Kunshan University to anonymously review courses and professors.
+      This is a internal platform for students at Duke Kunshan University to
+      anonymously review courses and professors.
     </div>
     <!-- <div class="search">
       <span class="p-input-icon-left">
@@ -62,13 +61,11 @@ import SearchBox from '../components/SearchBox.vue'
       <Chip>Faculty Reviews</Chip>
     </div>
   </main>
-  <div style="display: none;">
-  Not compatible with
-  </div>
+  <div style="display: none">Not compatible with</div>
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital@0;1&family=PT+Mono&family=Pacifico&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital@0;1&family=PT+Mono&family=Pacifico&display=swap");
 
 main {
   display: flex;
@@ -82,21 +79,21 @@ main {
 }
 
 .search {
-margin: 3rem 0;
+  margin: 3rem 0;
 }
 
 .p-inputtext-lg {
-width: 40vw;
+  width: 40vw;
 }
 
 .welcome {
   font-size: 2rem;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
 }
 
 .ad {
   font-size: 1.8rem;
-  font-family: 'PT Mono', monospace;
+  font-family: "PT Mono", monospace;
 }
 
 .slot {
@@ -114,14 +111,15 @@ width: 40vw;
 }
 
 @media (max-width: 744px) {
-    .slot, .search, .chips, .menu {
-        display: none;
-    }
-    .mobile_na {
-        display: block;
-        /* width:100%; */
-    }
-
+  .slot,
+  .search,
+  .chips,
+  .menu {
+    display: none;
+  }
+  .mobile_na {
+    display: block;
+    /* width:100%; */
+  }
 }
-
 </style>

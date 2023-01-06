@@ -42,9 +42,10 @@ export default {
 <style>
 .leftnavbar {
   padding: 0.5rem;
+  /* margin: 0rem 0.5rem; */
 }
 
-.leftnavbar .p-scrollpanel-bar {
+/* .leftnavbar .p-scrollpanel-bar {
   background-color: #e2e2e2 !important;
   opacity: 1;
   transition: background-color 0.3s;
@@ -52,5 +53,5 @@ export default {
 
 .leftnavbar .p-scrollpanel-bar:hover {
   background-color: #cecece !important;
-}
+} */
 </style>

@@ -23,6 +23,8 @@ import ScrollPanel from 'primevue/scrollpanel';
 import Steps from 'primevue/steps';
 import Tooltip from 'primevue/tooltip';
 import Textarea from 'primevue/textarea';
+import Carousel from 'primevue/carousel';
+import VirtualScroller from 'primevue/virtualscroller';
 
 import App from "./App.vue";
 import router from "./router";
@@ -60,6 +62,8 @@ app.component("ScrollPanel", ScrollPanel);
 app.component("Steps", Steps);
 app.component("Textarea", Textarea);
 app.directive('tooltip', Tooltip);
+app.component("Carousel", Carousel);
+app.component("VirtualScroller", VirtualScroller);
 
 
 app.mount("#app");

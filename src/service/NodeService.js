@@ -6,15 +6,8 @@ export default class NodeService {
       .then((d) => d.root);
   }
 
-  getCountries() {
-    return fetch("/data/countries.json")
+  getProfs() {
+    return fetch("/data/profs.json")
       .then((res) => res.json())
-      .then((d) => d.data);
-  }
-
-  getSurvey() {
-    return fetch("/data/survey.json")
-      .then((res) => res.json())
-      .then((d) => d.root);
   }
 }

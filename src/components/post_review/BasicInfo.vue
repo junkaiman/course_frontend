@@ -3,7 +3,6 @@
     <div class="p-fluid">
       <label for="">🔍 Search Course</label>
       <AutoComplete
-        class="searchbox"
         v-model="selectedCourse"
         placeholder="Search"
         :suggestions="filteredCourses"
@@ -12,9 +11,6 @@
         optionLabel="label"
         forceSelection
         :completeOnFocus="false"
-        inputClass="searchbox-input"
-        panelClass="searchbox-panel"
-        dropdownClass="searchbox-dropdown"
         loadingIcon="none"
       />
     </div>
@@ -26,9 +22,20 @@
       <label for="">Course Name</label>
       <InputText v-model="course_name" disabled></InputText>
       <label for="">Professor</label>
-      <InputText v-model="course_prof"></InputText>
+      <AutoComplete
+        v-model="course_prof"
+        placeholder=""
+        :suggestions="filteredProfs"
+        @complete="searchProf($event)"
+        @item-select="onProfSelect($event)"
+        forceSelection
+        :completeOnFocus="false"
+        loadingIcon="none"
+      />
+      <!-- <InputText v-model="course_prof"></InputText> -->
       <label for="">Section</label>
-      <InputText v-model="course_section"></InputText>
+      <Dropdown v-model="course_section" :options="sections"></Dropdown>
+      <!-- <InputText v-model="course_section"></InputText> -->
     </div>
   </div>
 </template>
@@ -49,12 +56,28 @@ export default {
   },
   mounted() {
     this.nodeService.getTreeNodes().then((data) => (this.courses = data));
+    this.nodeService.getProfs().then((data) => (this.profs = data));
   },
   data() {
     return {
-      selectedCourse: null,
       courses: null,
+      profs: null,
+      selectedCourse: null,
       filteredCourses: null,
+      selectedProf: null,
+      filteredProfs: null,
+      sections: [
+      "2023Spring",
+      "2022Fall",
+      "2022Spring",
+      "2021Fall",
+      "2021Spring",
+      "2020Fall",
+      "2020Spring",
+      "2019Fall",
+      "2019Spring",
+      "2018Fall",
+      ],
     };
   },
   methods: {
@@ -62,7 +85,6 @@ export default {
       setTimeout(() => {
         if (!event.query.trim().length) {
           this.filteredCourses = [...this.courses];
-          console.log("triggered1");
         } else {
           let tmp = [];
           this.courses.forEach((course) => {
@@ -75,13 +97,30 @@ export default {
         }
       }, 50);
     },
+    searchProf(event) {
+      setTimeout(() => {
+        if (!event.query.trim().length) {
+          this.filteredProfs = [...this.profs];
+        } else {
+          let tmp = [];
+          this.profs.forEach((prof) => {
+            if (prof.toLowerCase().includes(event.query.toLowerCase()))
+              tmp.push(prof);
+          });
+          this.filteredProfs = tmp;
+        }
+      }, 50);
+    },
     onCourseSelect(event) {
       const store = usePostReviewStore(this.$pinia);
       const [course_code, ...rest] = event.value.label.split(" - ");
       const course_name = rest.join(" - ");
       store.course_code = course_code;
       store.course_name = course_name;
-      //   this.selectedCourse = event.value.label;
+    },
+    onProfSelect(event) {
+      const store = usePostReviewStore(this.$pinia);
+      store.course_prof = event.value;
     },
   },
 };

@@ -73,7 +73,7 @@ export default {
           to: "/recharge",
         },
         {
-          label: "My Profile",
+          label: "My Reviews",
           icon: "pi pi-fw pi-user",
           to: "/profile",
         },

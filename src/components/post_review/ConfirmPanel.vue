@@ -6,11 +6,13 @@
         :courseProf="course_prof"
         :courseSection="course_section"
         :ratingGeneral="rating_general"
+        :ratingWorkload="rating_workload"
         :ratingDifficulty="rating_difficulty"
         :ratingGrading="rating_grading"
         :ratingHelpful="rating_helpful"
         :ratingTeaching="rating_teaching"
         :review="review"
+        magnifyScale="1.1"
     >
     </AccreditationCard>
 </template>
@@ -27,6 +29,7 @@ const {
   course_prof,
   course_section,
   rating_general,
+  rating_workload,
   rating_difficulty,
   rating_grading,
   rating_helpful,

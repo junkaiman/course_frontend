@@ -24,6 +24,7 @@ display: flex;
 flex-direction: row;
 align-items: center;
 justify-content: center;
+width: auto;
 }
 .container > div {
 margin: 0 0.5rem;

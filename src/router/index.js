@@ -5,6 +5,7 @@ import PostView from "../views/PostView.vue";
 import AboutView from "../views/AboutView.vue";
 import RechargeView from "../views/RechargeView.vue";
 import ProfileView from "../views/ProfileView.vue";
+import ReportView from "../views/ReportView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: ProfileView
+    },
+    {
+      path: "/report",
+      name: "report",
+      component: ReportView
     }
   ],
 });

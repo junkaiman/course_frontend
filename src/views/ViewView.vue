@@ -28,7 +28,7 @@ import ReviewCard from "../components/ReviewCard.vue";
           <b>Who have taught this class?</b>
           <br />
           <Chip class="chip-button" label="John Doe" />
-          <Chip label="Amy Liu" />
+          <Chip class="chip-button" label="Amy Liu" />
         </div>
         <!-- <Fieldset legend="Resources" :toggleable="true"></Fieldset> -->
       </Fieldset>

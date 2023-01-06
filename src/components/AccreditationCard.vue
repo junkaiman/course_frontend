@@ -2,7 +2,7 @@
   <div
     class="tiltcard card prompt4"
     data-tilt
-    data-tilt-scale="1.2"
+    :data-tilt-scale="magnifyScale"
     data-tilt-glare
     data-tilt-max-glare="0.3"
     data-tilt-reverse="true"
@@ -33,20 +33,24 @@
         <div>{{ ratingGeneral }}</div>
       </div>
       <div>
-        <div><b>Difficulty</b></div>
+        <div>Workload</div>
+        <div>{{ ratingWorkload }}</div>
+      </div>
+      <div>
+        <div>Difficulty</div>
         <div>{{ ratingDifficulty }}</div>
       </div>
       <div>
-        <div><b>Grading</b></div>
-        <div>{{ ratingGrading }}</div>
-      </div>
-      <div>
-        <div><b>Helpful</b></div>
-        <div>{{ ratingHelpful }}</div>
-      </div>
-      <div>
-        <div><b>Teaching</b></div>
+        <div>Teaching</div>
         <div>{{ ratingTeaching }}</div>
+      </div>
+      <div>
+        <div>Grading</div>
+        <div>{{ratingGrading }}</div>
+      </div>
+      <div>
+        <div>Helpful</div>
+        <div>{{ ratingHelpful }}</div>
       </div>
     </div>
     <div class="lower">
@@ -74,11 +78,13 @@ export default {
     courseProf: String,
     courseSection: String,
     ratingGeneral: Number,
+    ratingWorkload: Number,
     ratingDifficulty: Number,
     ratingGrading: Number,
     ratingHelpful: Number,
     ratingTeaching: Number,
     review: String,
+    magnifyScale: Number,
   },
 };
 </script>
@@ -93,7 +99,7 @@ export default {
 
 .upper > div {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 .mid {
@@ -105,7 +111,7 @@ export default {
 
 .mid > div {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 .lower {

@@ -13,5 +13,6 @@ export const usePostReviewStore = defineStore("postReview", {
         rating_grading: 0,
         rating_helpful: 0,
         review: "",
+        syllabus_filename: ""
     }),
 });

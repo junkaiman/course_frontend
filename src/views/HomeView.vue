@@ -1,4 +1,5 @@
 <script setup>
+import SearchBox from "../components/SearchBox.vue";
 import confetti from "canvas-confetti";
 var end = Date.now() + 4 * 1000;
 // go DKU!
@@ -28,9 +29,6 @@ var colors = ["#003a81", "#006f3f"];
 })();
 </script>
 
-<script>
-import SearchBox from "../components/SearchBox.vue";
-</script>
 
 <template>
   <main>
@@ -123,3 +121,33 @@ main {
   }
 }
 </style>
+
+<script>
+import axios from "axios";
+import { storeToRefs } from "pinia";
+import { useLoginStatusStore } from "../stores/login_status";
+// const store = useLoginStatusStore();
+// const { is_logged_in, access_token } = storeToRefs(store);
+export default {
+  mounted() {
+    const store = useLoginStatusStore();
+    console.log(store);
+    // console.log(this.$route.path);
+    // console.log(this.$route.query)
+    if (this.$route.path == "/login/") {
+      axios
+        .get(`/api/login?code=${this.$route.query.code}`)
+        .then((res) => {
+          console.log(res.data);
+          console.log(store)
+          store.is_logged_in = true;
+          store.access_token = res.data.access_token;
+          this.$router.push({ path: "/view/1/" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  },
+};
+</script>

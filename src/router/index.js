@@ -7,6 +7,7 @@ import RechargeView from "../views/RechargeView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import ReportView from "../views/ReportView.vue";
 import UploadView from "../views/UploadView.vue";
+import QuitView from "../views/QuitView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,9 +48,19 @@ const router = createRouter({
       component: ReportView
     },
     {
-      path: "/upload",
+      path: "/upload/:id",
       name: "upload",
       component: UploadView
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: HomeView,
+    },
+    {
+      path: "/quit",
+      name: "quit",
+      component: QuitView
     }
   ],
 });

@@ -1,20 +1,27 @@
 <script setup>
-import ViewContentPanel from "../components/ViewContentPanel.vue";
+import ViewContentPanel from "../ViewContentPanel.vue";
 </script>
 
 <template>
   <ViewContentPanel class="background" :fake="true" />
   <div class="foreground card prompt2">
-    <div class="welcome">Unlock now?</div>
-    <div class="ad">{{ courseCode || "[ERROR] Please do not process" }}</div>
-    <div class="welcome">✨🔓</div>
-    <div>Unlocking this page will cost you 1 bolt ⚡️</div>
-    <div>After unlocking, you will have unlimited access to the content.</div>
+    <div class="welcome">Welcome!</div>
+    <!-- <div class="ad">{{ courseCode || "[ERROR] Please do not process" }}</div> -->
+    <div class="welcome">✨</div>
+    <div>Seems like this is your very first step on this platform!</div>
+    <div>First, you need to <b>upload 1 syllabus</b> of any course you are taking. After uploading, you will automatically join the waitlist.</div>
     <Divider />
-    <div>You can recharge 1 bolt by:</div>
+    <!-- <div>Look at the top right corner ⚡️ of this page!</div>
+    <div>The <b>spinning bolt <i class="pi pi-spin pi-bolt"></i></b> is your credit on this platform. You can use it to unlock course reviews. But you will lose credits when you</div>
+    <li>Upload wrong documents on purpose</li>
+    <li>Submit misrepresented reviews</li>
+    <Divider />
+    <div>You can earn the bolt by</div>
     <li>Writing 1 review, or</li>
-    <li>Upload 1 syllabus, or</li>
-    <li>Buy at cost 0.5RMB</li>
+    <li>Uploading 1 syllabus, or</li>
+    <li>Buying at cost ~0.5RMB</li>
+    <Divider /> -->
+    <div>Now, join the waitlist by uploading your first syllabus!</div>
     <Divider />
     <div class="nav">
       <Button
@@ -23,18 +30,21 @@ import ViewContentPanel from "../components/ViewContentPanel.vue";
         class="p-button-rounded"
         icon="pi pi-angle-left"
         icon-pos="left"
-        @click="this.$router.go(-1)"
+        @click="$router.go(-1)"
+        :disabled="true"
       ></Button>
       <Button
-        label="Unlock Now"
+        label="Upload Syllabus & Join Waitlist"
         type="button"
         class="p-button-rounded p-button-success"
+        @click="$router.push('/upload/1/')"
       ></Button>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -49,6 +59,9 @@ export default {
 </script>
 
 <style scoped>
+.p-divider-solid.p-divider-horizontal:before {
+  border-top-style: none;
+}
 .background {
   position: absolute;
   left: -1rem;
@@ -73,7 +86,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10rem auto;
+  margin: 4rem auto;
   width: 38rem;
   padding: 3rem;
   border: unset;

@@ -1,34 +1,99 @@
+<script setup>
+// pinia
+import { storeToRefs } from "pinia";
+import { useLoginStatusStore } from "../stores/login_status";
+const store = useLoginStatusStore();
+const { is_logged_in, n_bolt } = storeToRefs(store);
+// const { is_logged_in, bolt_count } = store;
+const items = [
+  {
+    label: "Home",
+    icon: "pi pi-fw pi-home",
+    to: "/",
+  },
+  {
+    label: "Courses",
+    icon: "pi pi-fw pi-align-center",
+    to: "/view/1/",
+  },
+  {
+    label: "Write Review",
+    icon: "pi pi-fw pi-pencil",
+    to: "/post/1/",
+  },
+  {
+    label: "Upload Syllabus",
+    icon: "pi pi-fw pi-upload",
+    to: "/upload/1/",
+  },
+  {
+    label: "About",
+    icon: "pi pi-fw pi-info-circle",
+    to: "/about/",
+  },
+];
+const user_items = [
+  {
+    label: "Get More Bolt",
+    icon: "pi pi-fw pi-bolt",
+    to: "/recharge/",
+  },
+  {
+    label: "My Reviews",
+    icon: "pi pi-fw pi-user",
+    to: "/profile/",
+  },
+  {
+    label: "Report",
+    icon: "pi pi-fw pi-question-circle",
+    to: "/report/",
+  },
+  { separator: true },
+  {
+    label: "Quit",
+    icon: "pi pi-fw pi-power-off",
+    to: "/quit/",
+  },
+];
+</script>
+
 <template>
   <Menubar :model="items">
     <template #end>
       <div class="user-panel">
-        <Menu
-          ref="menu"
-          :model="user_items"
-          :popup="true"
-          @mouseleave="mouseleave_toggle"
-        />
-        <!-- @click="toggle" -->
-        <Chip
-          icon="pi pi-spin pi-bolt"
-          label="14"
-          class="chip-button bolt-shake"
-          @mouseover="mouseover_toggle"
-        >
-        </Chip>
-        <!-- <Button
-          icon="pi pi-user"
-          class="p-button-rounded p-button-text"
-          style="margin-right: 1rem"
-          @click="toggle"
-        >
-        </Button> -->
+        <span v-if="is_logged_in">
+          <Menu
+            ref="menu"
+            :model="user_items"
+            :popup="true"
+            @mouseleave="mouseleave_toggle"
+          />
+          <!-- @click="toggle" -->
+          <Chip
+            icon="pi pi-spin pi-bolt"
+            :label="`${n_bolt}`"
+            class="chip-button bolt-shake"
+            @mouseover="mouseover_toggle"
+          >
+          </Chip>
+        </span>
+        <span v-else>
+          <Button
+            icon="pi pi-sign-in"
+            icon-pos="right"
+            label="Log In"
+            class="p-button-rounded p-button-secondary p-button-sm"
+            @click="authorize"
+          >
+          </Button>
+        </span>
       </div>
     </template>
   </Menubar>
 </template>
 
 <script>
+import ApiService from "../service/apiService";
 export default {
   methods: {
     mouseover_toggle(e) {
@@ -40,62 +105,13 @@ export default {
     toggle(e) {
       this.$refs.menu.toggle(e);
     },
+    authorize() {
+      const uri = ApiService.getAuthorizeUri();
+      window.location.href = uri;
+    },
   },
   data() {
-    return {
-      items: [
-        {
-          label: "Home",
-          icon: "pi pi-fw pi-home",
-          to: "/",
-        },
-        {
-          label: "Courses",
-          icon: "pi pi-fw pi-align-center",
-          to: "/view/1",
-        },
-        {
-          label: "Write Review",
-          icon: "pi pi-fw pi-pencil",
-          to: "/post/1",
-          style: "",
-        },
-        {
-          label: "Upload Syllabus",
-          icon: "pi pi-fw pi-upload",
-          to: "/upload",
-          style: "",
-        },
-        {
-          label: "About",
-          icon: "pi pi-fw pi-info-circle",
-          to: "/about",
-        },
-      ],
-      user_items: [
-        {
-          label: "Get More Bolt",
-          icon: "pi pi-fw pi-bolt",
-          to: "/recharge",
-        },
-        {
-          label: "My Reviews",
-          icon: "pi pi-fw pi-user",
-          to: "/profile",
-        },
-        {
-          label: "Report",
-          icon: "pi pi-fw pi-question-circle",
-          to: "/report",
-        },
-        { separator: true },
-        {
-          label: "Quit",
-          icon: "pi pi-fw pi-power-off",
-          to: "/quit",
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>

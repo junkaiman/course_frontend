@@ -43,7 +43,7 @@ import BoltCodeValidate from "../components/BoltCodeValidate.vue";
 export default {
   methods: {
     toggle_earn() {
-      this.$router.push("/post/1");
+      this.$router.push("/post/1/");
     },
     toggle_buy() {
       this.$dialog.open(BoltCodeValidate, {

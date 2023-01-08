@@ -1,5 +1,5 @@
 <script setup>
-import ViewContentPanel from "../components/ViewContentPanel.vue";
+import ViewContentPanel from "../ViewContentPanel.vue";
 </script>
 
 <template>
@@ -12,12 +12,14 @@ import ViewContentPanel from "../components/ViewContentPanel.vue";
     <div>By uploading more syllabi, you can move up in line.</div>
     <div>By inviting friends to sign up, you can move up in line.</div>
     <Divider />
-    <div>To move 1 spot forward, you need to: </div>
-    <li>Upload {{syllabiUploadNum || 2}} syllabi, or</li>
-    <li>Invite {{friendInviteNum || 4}} friends</li>
+    <div>To move forward the line, you can: </div>
+    <li>Upload {{need_syllabiUploadNum || 1}} syllabi, or</li>
+    <li>Invite {{need_friendInviteNum || 2}} friends</li>
+    <Divider/>
+    <div>You have uploaded <b>{{have_syllabiUploadNum || 0}}</b> syllabi and invited <b>{{have_friendInviteNum || 0}}</b> friends! Keep going!</div>
     <Divider/>
     <div class="nav">
-      <Button label="Upload Syllabus" type="button" class="p-button-rounded"></Button>
+      <Button label="Upload Syllabus" type="button" class="p-button-rounded" @click="$router.push('/upload/1')"></Button>
       <Button label="Invite Friends" type="button" class="p-button-rounded p-button-success"></Button>
     </div>
   </div>
@@ -27,10 +29,9 @@ import ViewContentPanel from "../components/ViewContentPanel.vue";
 export default {
   data() {
     return {
-      totalRegistered: 140,
       wlNumber: 12,
-      syllabiUploadNum: 2,
-      friendInviteNum: 4,
+      have_syllabiUploadNum: 5,
+      have_friendInviteNum: 1,
     };
   },
 
@@ -38,6 +39,9 @@ export default {
 </script>
 
 <style scoped>
+.p-divider-solid.p-divider-horizontal:before {
+  border-top-style: none;
+}
 
 .prompt2 {
 background-image: linear-gradient(135deg, #003a81 0%, #006f3f 150%);
@@ -67,7 +71,7 @@ background-image: linear-gradient(135deg, #003a81 0%, #006f3f 150%);
   display: flex;
   flex-direction: column;
     justify-content: center;
-    margin: 10rem auto;
+    margin: 8rem auto;
     width: 38rem;
     padding: 3rem;
     border: unset;

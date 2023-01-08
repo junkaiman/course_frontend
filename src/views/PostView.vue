@@ -1,5 +1,18 @@
+<script setup>
+import BasicInfo from "../components/post_review/BasicInfo.vue";
+import RatingPanel from "../components/post_review/RatingPanel.vue";
+import ReviewPanel from "../components/post_review/ReviewPanel.vue";
+import ConfirmPanel from "../components/post_review/ConfirmPanel.vue";
+import { storeToRefs } from "pinia";
+import { usePostReviewStore } from "../stores/post_review";
+import { useLoginStatusStore } from "../stores/login_status";
+const postReviewStore = usePostReviewStore();
+const loginStatusStore = useLoginStatusStore();
+const { is_logged_in } = storeToRefs(loginStatusStore);
+</script>
 <template>
   <div class="container">
+    <InlineMessage v-if="!is_logged_in" severity="warn">Please log in</InlineMessage>
     <div class="card">
       <Steps :model="items" :readonly="true" aria-label="Form Steps" />
     </div>
@@ -33,14 +46,6 @@
   </div>
 </template>
 
-<script setup>
-import BasicInfo from "../components/post_review/BasicInfo.vue";
-import RatingPanel from "../components/post_review/RatingPanel.vue";
-import ReviewPanel from "../components/post_review/ReviewPanel.vue";
-import ConfirmPanel from "../components/post_review/ConfirmPanel.vue";
-import { storeToRefs } from "pinia";
-import { usePostReviewStore } from "../stores/post_review";
-</script>
 
 
 <script>
@@ -50,19 +55,19 @@ export default {
       items: [
         {
           label: "Basic Info",
-          to: "/post/1",
+          to: "/post/1/",
         },
         {
           label: "Ratings",
-          to: "/post/2",
+          to: "/post/2/",
         },
         {
           label: "Review",
-          to: "/post/3",
+          to: "/post/3/",
         },
         {
           label: "Confirmation",
-          to: "/post/4",
+          to: "/post/4/",
         },
       ],
       formObject: {},
@@ -76,7 +81,6 @@ export default {
         this.formObject[field] = event.formData[field];
       }
       const store = usePostReviewStore(this.$pinia);
-      console.log(store.firstname);
       this.$router.push(this.items[currentIdx + 1].to);
     },
     prevPage(event) {
@@ -86,12 +90,6 @@ export default {
     complete() {
       console.log(this.formObject);
     },
-  },
-  beforeRouteLeave(to, from) {
-    const answer = window.confirm(
-      "Do you really want to leave? you have unsaved changes!"
-    );
-    if (!answer) return false;
   },
 };
 </script>

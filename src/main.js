@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import PrimeVue from "primevue/config";
 import InputText from 'primevue/inputtext';
 import Dropdown from 'primevue/dropdown';
@@ -27,6 +28,10 @@ import Carousel from 'primevue/carousel';
 import VirtualScroller from 'primevue/virtualscroller';
 import OverlayPanel from 'primevue/overlaypanel';
 import Divider from 'primevue/divider';
+import FileUpload from 'primevue/fileupload';
+import Message from 'primevue/message';
+import InlineMessage from 'primevue/inlinemessage';
+
 
 
 import App from "./App.vue";
@@ -39,6 +44,7 @@ import 'primeicons/primeicons.css';
 
 
 const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate)
 const app = createApp(App);
 app.use(pinia);
 app.use(router);
@@ -69,6 +75,9 @@ app.component("Carousel", Carousel);
 app.component("VirtualScroller", VirtualScroller);
 app.component("OverlayPanel", OverlayPanel);
 app.component("Divider", Divider);
+app.component("FileUpload", FileUpload);
+app.component("Message", Message);
+app.component("InlineMessage", InlineMessage);
 
 
 app.mount("#app");

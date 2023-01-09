@@ -15,7 +15,8 @@ export const useLoginStatusStore = defineStore("loginStatus", {
         uploaded_review_ids: [],
         invite_code: null,
         inviter_id: null,
-        invitee_ids: []
+        invitee_ids: [],
+        inviter_code: null,
     }),
     persist: true
 });

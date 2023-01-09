@@ -126,27 +126,29 @@ main {
 import axios from "axios";
 import { storeToRefs } from "pinia";
 import { useLoginStatusStore } from "../stores/login_status";
+import apiService from "../service/apiService";
 // const store = useLoginStatusStore();
 // const { is_logged_in, access_token } = storeToRefs(store);
 export default {
-  mounted() {
-    const store = useLoginStatusStore();
-    console.log(store);
-    // console.log(this.$route.path);
-    // console.log(this.$route.query)
-    if (this.$route.path == "/login/") {
-      axios
-        .get(`/api/login?code=${this.$route.query.code}`)
-        .then((res) => {
-          console.log(res.data);
-          console.log(store)
-          store.is_logged_in = true;
-          store.access_token = res.data.access_token;
-          this.$router.push({ path: "/view/1/" });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+  async mounted() {
+    const store = useLoginStatusStore(this.$pinia);
+    console.log("this.route.path", this.$route.path)
+    console.log("store", store)
+    if (this.$route.name == "login") {
+      let r = await apiService.login(this.$route.query.code, store.inviter_code)
+      // console.log("get access_token", access_token)
+      if (r.access_token) {
+        store.is_logged_in = true;
+        store.access_token = r.access_token;
+        store.user_id = r.user.user_id;
+        store.n_bolt = r.user.n_bolt;
+        this.$router.push({ path: "/view/1/" });
+      }
+    }
+    if (this.$route.name == "invite") {
+      console.log("this is /i/, saving invite code to store")
+      store.inviter_code = this.$route.params.id
+      console.log("/i/: store.inviter_code", store.inviter_code)
     }
   },
 };

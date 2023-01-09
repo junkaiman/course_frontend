@@ -58,6 +58,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: "/i/:id",
+      name: "invite",
+      component: HomeView
+    },
+    {
       path: "/quit",
       name: "quit",
       component: QuitView

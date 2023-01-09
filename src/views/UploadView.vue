@@ -8,19 +8,22 @@ import UploadConfirmPanel from "../components/upload_syllabus/UploadConfirmPanel
 import { storeToRefs } from "pinia";
 import { usePostReviewStore } from "../stores/post_review";
 import { useLoginStatusStore } from "../stores/login_status";
+import apiService from "../service/apiService";
 const loginStatusStore = useLoginStatusStore();
 const { is_logged_in } = storeToRefs(loginStatusStore);
 </script>
 
 <template>
   <div class="container">
-    <InlineMessage v-if="!is_logged_in" severity="warn">Please log in</InlineMessage>
+    <InlineMessage v-if="!is_logged_in" severity="warn"
+      >Please log in</InlineMessage
+    >
     <div class="card">
       <Steps :model="items" :readonly="true" aria-label="Form Steps" />
     </div>
     <BasicInfo v-if="$route.params.id === '1'" />
     <UploadPanel v-else-if="$route.params.id === '2'" />
-    <UploadConfirmPanel v-else-if="$route.params.id === '3'" />
+    <!-- <UploadConfirmPanel v-else-if="$route.params.id === '3'" /> -->
     <div class="nav">
       <Button
         :disabled="$route.params.id === '1'"
@@ -29,19 +32,19 @@ const { is_logged_in } = storeToRefs(loginStatusStore);
         @click="prevPage($event)"
       ></Button>
       <Button
-        v-if="$route.params.id !== '3'"
+        v-if="$route.params.id !== '2'"
         label="Next"
         icon="pi pi-angle-right"
         icon-pos="right"
         @click="nextPage($event)"
       ></Button>
       <Button
-        v-if="$route.params.id === '3'"
+        v-if="$route.params.id === '2'"
         class="p-button-success"
         label="Confirm"
         icon="pi pi-check"
         icon-pos="right"
-        @click="submitSurvey($event)"
+        @click="uploadSyllabus($event)"
       ></Button>
     </div>
   </div>
@@ -62,10 +65,10 @@ export default {
           label: "Upload",
           to: "/upload/2/",
         },
-        {
-          label: "Confirmation",
-          to: "/upload/3/",
-        },
+        // {
+        //   label: "Confirmation",
+        //   to: "/upload/3/",
+        // },
       ],
       formObject: {},
     };
@@ -86,6 +89,13 @@ export default {
     },
     complete() {
       console.log(this.formObject);
+    },
+    async uploadSyllabus(event) {
+      const store = usePostReviewStore(this.$pinia);
+      const loginStatusStore = useLoginStatusStore(this.$pinia);
+      console.log("ready to submit syllabus: ", store.course_id, store.course_prof, store.course_section, store.syllabus_file)
+      let syllabus_id = await apiService.uploadSyllabus(store.course_id, store.course_prof, store.course_section, store.syllabus_file, loginStatusStore.access_token)
+      console.log("now get syllabus_id", syllabus_id)
     },
   },
 };

@@ -115,6 +115,8 @@ export default {
       const store = usePostReviewStore(this.$pinia);
       const [course_code, ...rest] = event.value.label.split(" - ");
       const course_name = rest.join(" - ");
+      const course_id = event.value.to.split('/').at(-1)
+      store.course_id = course_id;
       store.course_code = course_code;
       store.course_name = course_name;
     },

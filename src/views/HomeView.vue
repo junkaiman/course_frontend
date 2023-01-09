@@ -132,23 +132,40 @@ import apiService from "../service/apiService";
 export default {
   async mounted() {
     const store = useLoginStatusStore(this.$pinia);
-    console.log("this.route.path", this.$route.path)
-    console.log("store", store)
+    console.log("this.route.path", this.$route.path);
+    console.log("store", store);
+    if (this.$route.name == "invite") {
+      console.log("this is /i/, saving invite code to store");
+      store.inviter_code = this.$route.params.id;
+      console.log("/i/: store.inviter_code", store.inviter_code);
+    }
     if (this.$route.name == "login") {
-      let r = await apiService.login(this.$route.query.code, store.inviter_code)
+      let r = await apiService.login(
+        this.$route.query.code,
+        store.inviter_code
+      );
       // console.log("get access_token", access_token)
       if (r.access_token) {
         store.is_logged_in = true;
         store.access_token = r.access_token;
-        store.user_id = r.user.user_id;
-        store.n_bolt = r.user.n_bolt;
-        this.$router.push({ path: "/view/1/" });
+        this.$router.push({ path: "/refresh/" });
       }
-    }
-    if (this.$route.name == "invite") {
-      console.log("this is /i/, saving invite code to store")
-      store.inviter_code = this.$route.params.id
-      console.log("/i/: store.inviter_code", store.inviter_code)
+    } else if (store.is_logged_in) {
+      console.log("is logged in, refreshing");
+      let user = await apiService.getUserProfile(store.access_token);
+      // console.log("get user profile", user);
+      if (user) {
+        store.user_id = user.user_id;
+        store.user_name = user.user_name;
+        store.email = user.email;
+        store.joined_at = user.joined_at;
+        store.user_status = user.user_status;
+        store.n_bolt = user.n_bolt;
+        store.unlocked_course_ids = user.unlocked_course_ids;
+        store.uploaded_syllabus_ids = user.uploaded_syllabus_ids;
+        store.invite_code = user.invite_code;
+        store.invitee_ids = user.invitee_ids;
+      }
     }
   },
 };

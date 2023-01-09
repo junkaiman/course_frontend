@@ -14,9 +14,6 @@
         :auto="false"
         :customUpload="true"
         @select="selected($event)"
-        @before-upload="beforeUpload($event)"
-        @before-send="beforeSend($event)"
-        @upload="myUploader($event)"
       >
       </FileUpload>
     </div>
@@ -46,17 +43,11 @@ export default {
     myUploader(event) {
       console.log(event.files);
     },
-    beforeUpload(event) {
-      console.log(event);
-    },
-    beforeSend(event) {
-      console.log(event);
-    },
     selected(event) {
       const store = usePostReviewStore(this.$pinia);
       store.syllabus_file = event.files.at(0);
-      console.log(store.syllabus_file);
-      console.log(event);
+      // console.log(store.syllabus_file);
+      // console.log(event);
     },
   },
 };

@@ -93,9 +93,32 @@ export default {
     async uploadSyllabus(event) {
       const store = usePostReviewStore(this.$pinia);
       const loginStatusStore = useLoginStatusStore(this.$pinia);
-      console.log("ready to submit syllabus: ", store.course_id, store.course_prof, store.course_section, store.syllabus_file)
-      let syllabus_id = await apiService.uploadSyllabus(store.course_id, store.course_prof, store.course_section, store.syllabus_file, loginStatusStore.access_token)
-      console.log("now get syllabus_id", syllabus_id)
+      if (!store.course_id || !store.course_prof || !store.course_section || !store.syllabus_file){
+        this.$toast.add({severity:'error', summary: 'Uploading failed', detail:'Please check if the course information is correct', life: 8000});
+        return;
+      }
+      // console.log(
+      //   "ready to submit syllabus: ",
+      //   store.course_id,
+      //   store.course_prof,
+      //   store.course_section,
+      //   store.syllabus_file
+      // );
+      let syllabus_id = await apiService.uploadSyllabus(
+        store.course_id,
+        store.course_prof,
+        store.course_section,
+        store.syllabus_file,
+        loginStatusStore.access_token
+      );
+      if (syllabus_id) {
+        this.$toast.add({severity: 'success', summary: 'Uploading succeeded', detail: 'Your syllabus is uploaded successfully', life: 3000})
+        this.$router.push('/refresh/')
+      }
+      else {
+        this.$toast.add({severity:'error', summary: 'Uploading failed', detail:'Network issue. Please try again.', life: 8000})
+      }
+      // console.log("now get syllabus_id", syllabus_id);
     },
   },
 };

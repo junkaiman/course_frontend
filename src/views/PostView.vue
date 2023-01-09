@@ -6,13 +6,16 @@ import ConfirmPanel from "../components/post_review/ConfirmPanel.vue";
 import { storeToRefs } from "pinia";
 import { usePostReviewStore } from "../stores/post_review";
 import { useLoginStatusStore } from "../stores/login_status";
+import apiService from "../service/apiService";
 const postReviewStore = usePostReviewStore();
 const loginStatusStore = useLoginStatusStore();
 const { is_logged_in } = storeToRefs(loginStatusStore);
 </script>
 <template>
   <div class="container">
-    <InlineMessage v-if="!is_logged_in" severity="warn">Please log in</InlineMessage>
+    <InlineMessage v-if="!is_logged_in" severity="warn"
+      >Please log in</InlineMessage
+    >
     <div class="card">
       <Steps :model="items" :readonly="true" aria-label="Form Steps" />
     </div>
@@ -89,6 +92,59 @@ export default {
     },
     complete() {
       console.log(this.formObject);
+    },
+    async submitSurvey() {
+      const store = usePostReviewStore(this.$pinia);
+      const loginStatusStore = useLoginStatusStore(this.$pinia);
+      if (
+        !store.course_id ||
+        !store.course_prof ||
+        !store.course_section ||
+        !store.rating_general ||
+        !store.rating_workload ||
+        !store.rating_difficulty ||
+        !store.rating_teaching ||
+        !store.rating_grading ||
+        !store.rating_helpful ||
+        !store.review
+      ) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error",
+          detail: "Please fill out all fields",
+          life: 3000,
+        });
+      } else {
+        let review_id = await apiService.postReview(
+          store.course_id,
+          store.course_prof,
+          store.course_section,
+          store.rating_general,
+          store.rating_workload,
+          store.rating_difficulty,
+          store.rating_teaching,
+          store.rating_grading,
+          store.rating_helpful,
+          store.review,
+          loginStatusStore.access_token
+        );
+        if (review_id) {
+          this.$toast.add({
+            severity: "success",
+            summary: "Success",
+            detail: "Survey Submitted",
+            life: 3000,
+          });
+          this.$router.push("/refresh/");
+        } else {
+          this.$toast.add({
+            severity: "error",
+            summary: "Error",
+            detail: "Something went wrong",
+            life: 3000,
+          });
+        }
+      }
     },
   },
 };

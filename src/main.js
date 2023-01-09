@@ -31,7 +31,8 @@ import Divider from 'primevue/divider';
 import FileUpload from 'primevue/fileupload';
 import Message from 'primevue/message';
 import InlineMessage from 'primevue/inlinemessage';
-
+import ToastService from 'primevue/toastservice';
+import Toast from 'primevue/toast';
 
 
 import App from "./App.vue";
@@ -78,6 +79,8 @@ app.component("Divider", Divider);
 app.component("FileUpload", FileUpload);
 app.component("Message", Message);
 app.component("InlineMessage", InlineMessage);
+app.component("Toast", Toast);
+app.use(ToastService)
 
 
 app.mount("#app");

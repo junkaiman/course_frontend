@@ -4,6 +4,7 @@ import TopMenuBar from "./components/TopMenuBar.vue";
 </script>
 
 <template>
+  <Toast />
   <Button
     id="toggle-chat-button"
     type="button"

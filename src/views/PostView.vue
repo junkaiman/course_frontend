@@ -115,6 +115,15 @@ export default {
           life: 3000,
         });
       } else {
+        if (!loginStatusStore.is_logged_in) {
+          this.$toast.add({
+            severity: "error",
+            summary: "Uploading failed",
+            detail: "Please log in first",
+            life: 8000,
+          });
+          return;
+        }
         let review_id = await apiService.postReview(
           store.course_id,
           store.course_prof,

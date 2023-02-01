@@ -2,7 +2,7 @@
     <AccreditationCard
         emoji="🎓"
         :courseCode="course_code"
-        :courseName="course_name"
+        :courseName="selected_course ? selected_course.label : ''"
         :courseProf="course_prof"
         :courseSection="course_section"
         :ratingGeneral="rating_general"
@@ -35,6 +35,7 @@ const {
   rating_helpful,
   rating_teaching,
   review,
+  selected_course
 } = storeToRefs(store);
 </script>
 

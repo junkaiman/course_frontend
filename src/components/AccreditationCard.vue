@@ -10,10 +10,10 @@
   >
     <div class="emoji">{{emoji}}</div>
     <div class="upper">
-      <div>
+      <!-- <div>
         <div><b>Course Code </b></div>
         <div>{{ courseCode }}</div>
-      </div>
+      </div> -->
       <div>
         <div><b>Course Name</b></div>
         <div>{{ courseName }}</div>
@@ -73,7 +73,7 @@ export default {
   },
   props: {
     emoji: String,
-    courseCode: String,
+    // courseCode: String,
     courseName: String,
     courseProf: String,
     courseSection: String,

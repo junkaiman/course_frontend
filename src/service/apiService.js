@@ -137,4 +137,89 @@ export default {
       return null;
     }
   },
+
+  async getUserCount() {
+    try {
+      let response = await axios.get(`/api/stats/get-user-count`);
+      if (response.data) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log("getUserCount error", error);
+      return null;
+    }
+  },
+  async getReviewCount() {
+    try {
+      let response = await axios.get(`/api/stats/get-review-count`);
+      if (response.data) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log("getReviewCount error", error);
+      return null;
+    }
+  },
+
+  async getSyllabusCount() {
+    try {
+      let response = await axios.get(`/api/stats/get-syllabus-count`);
+      if (response.data) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log("getSyallbusCount error", error);
+      return null;
+    }
+  },
+
+  async getCourseStats(course_id) {
+    try {
+      let response = await axios.get(`/api/stats/get-course-stats/${course_id}`);
+      if (response.data) {
+        return response.data;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.log("getCourseStats error", error);
+      return null;
+    }
+  },
+  async unlockCourse(access_token, course_id) {
+    try {
+      let response = await axios.post(`/api/course/unlock/${course_id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      if (response.data) {
+        return response.data;
+      }
+    } catch (error) {
+      console.log("unlockCourse error", error);
+      return null;
+    }
+  },
+  async getCourse(access_token, course_id) {
+    try {
+      let response = await axios.get(`/api/course/get/${course_id}`, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      if (response.data) {
+        return response.data;
+      }
+    } catch (error) {
+      console.log("getCourse error", error);
+      return null;
+    }
+  },
 };

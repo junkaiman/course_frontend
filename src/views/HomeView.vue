@@ -51,12 +51,22 @@ var colors = ["#003a81", "#006f3f"];
         <i class="pi pi-search" />
       </span>
     </div> -->
-    <SearchBox />
+    <SearchBox id="searchbox" />
     <!-- <ListBox></ListBox> -->
     <div class="chips">
-      <Chip>Course Reviews</Chip>
-      <Chip>Syllabus</Chip>
-      <Chip>Faculty Reviews</Chip>
+      <Chip :label="user_count+ ' Active Users'" icon="pi pi-user"></Chip>
+      <Chip :label="review_count + ' Course Reviews'" icon="pi pi-pencil"></Chip>
+      <Chip :label="syllabus_count + ' Syllabus'" icon="pi pi-upload"></Chip>
+      <Divider></Divider>
+      <!-- <Tag :value="user_count + ' users'" icon="pi pi-user" rounded></Tag>
+      &nbsp;
+      <Tag :value="review_count + ' reviews'" icon="pi pi-pencil" rounded></Tag>
+      &nbsp;
+      <Tag
+        :value="syllabus_count + ' syllabi'"
+        icon="pi pi-upload"
+        rounded
+      ></Tag> -->
     </div>
   </main>
   <div style="display: none">Not compatible with</div>
@@ -130,14 +140,21 @@ import apiService from "../service/apiService";
 // const store = useLoginStatusStore();
 // const { is_logged_in, access_token } = storeToRefs(store);
 export default {
+  data() {
+    return {
+      user_count: 0,
+      review_count: 0,
+      syllabus_count: 0,
+    };
+  },
   async mounted() {
     const store = useLoginStatusStore(this.$pinia);
-    console.log("this.route.path", this.$route.path);
-    console.log("store", store);
+    // console.log("this.route.path", this.$route.path);
+    // console.log("store", store);
     if (this.$route.name == "invite") {
-      console.log("this is /i/, saving invite code to store");
+      // console.log("this is /i/, saving invite code to store");
       store.inviter_code = this.$route.params.id;
-      console.log("/i/: store.inviter_code", store.inviter_code);
+      // console.log("/i/: store.inviter_code", store.inviter_code);
     }
     if (this.$route.name == "login") {
       let r = await apiService.login(
@@ -151,7 +168,7 @@ export default {
         this.$router.push({ path: "/refresh/" });
       }
     } else if (store.is_logged_in) {
-      console.log("is logged in, refreshing");
+      // console.log("is logged in, refreshing");
       let user = await apiService.getUserProfile(store.access_token);
       // console.log("get user profile", user);
       if (user) {
@@ -167,6 +184,20 @@ export default {
         store.invitee_ids = user.invitee_ids;
       }
     }
+
+    // Get stats
+    apiService.getUserCount().then((res) => {
+      this.user_count = res.pending + res.waitlisted + res.confirmed;
+    });
+    apiService.getReviewCount().then((res) => {
+      this.review_count = res.review_count;
+    });
+    apiService.getSyllabusCount().then((res) => {
+      this.syllabus_count = res.syllabus_count;
+    });
+    // this.user_count = res1.pending + res1.waitlisted + res1.confirmed;
+    // this.review_count = res2.review_count;
+    // this.syllabus_count = res3.syllabus_count;
   },
 };
 </script>

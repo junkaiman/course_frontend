@@ -14,7 +14,7 @@ const items = [
   {
     label: "Courses",
     icon: "pi pi-fw pi-align-center",
-    to: "/view/1/",
+    to: "/view/DzLRojjiMQ/",
   },
   {
     label: "Write Review",

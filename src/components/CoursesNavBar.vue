@@ -29,11 +29,11 @@ export default {
   },
   methods: {
     onNodeSelect(e) {
-      console.log(e.data);
+      // console.log(e.data);
     },
 
     onNodeUnselect(e) {
-      console.log(e.data);
+      // console.log(e.data);
     },
   },
 };

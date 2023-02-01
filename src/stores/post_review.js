@@ -14,6 +14,7 @@ export const usePostReviewStore = defineStore("postReview", {
         rating_grading: null,
         rating_helpful: null,
         review: null,
-        syllabus_file: null
+        syllabus_file: null,
+        selected_course: null
     }),
 });

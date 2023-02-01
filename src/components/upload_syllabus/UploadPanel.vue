@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     myUploader(event) {
-      console.log(event.files);
+      // console.log(event.files);
     },
     selected(event) {
       const store = usePostReviewStore(this.$pinia);

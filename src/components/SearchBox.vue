@@ -15,8 +15,8 @@
       panelClass="searchbox-panel"
       dropdownClass="searchbox-dropdown"
       loadingIcon="none"
-      />
-      <!-- optionGroupChildren="items"
+    />
+    <!-- optionGroupChildren="items"
       optionGroupLabel="label" -->
   </span>
 </template>
@@ -44,32 +44,26 @@ export default {
       setTimeout(() => {
         if (!event.query.trim().length) {
           this.filteredCourses = [...this.courses];
-          console.log("triggered1")
+          console.log("triggered1");
         } else {
           let tmp = [];
+          let tmp_labels = [];
           this.courses.forEach((course) => {
             course.items.forEach((item) => {
-              if (item.label.toLowerCase().includes(event.query.toLowerCase()))
-                tmp.push(item);
-            })
-          })
-          this.filteredCourses = tmp;
-
-          // this.filteredCourses = this.courses.filter((course) => {
-          //   return course.items.filter((item) => {
-          //     return item.label
-          //       .toLowerCase()
-          //       .includes(event.query.toLowerCase());
-            // });
-            // course.items.filter((item) => {
-            //   return item.label
-            //     .toLowerCase()
-            //     .includes(event.query.toLowerCase());
-            // });
-            // return course.label
-            //   .toLowerCase()
-            //   .includes(event.query.toLowerCase());
-          // });
+              // console.log(item)
+              if (
+                item.label.toLowerCase().includes(event.query.toLowerCase())
+              ) {
+                // console.log(tmp_labels.indexOf(item.label))
+                if (tmp_labels.indexOf(item.label) === -1) {
+                  tmp.push(item);
+                  tmp_labels.push(item.label);
+                }
+              }
+            });
+          });
+          this.filteredCourses = tmp
+          // console.log(this.filteredCourses)
         }
       }, 50);
     },

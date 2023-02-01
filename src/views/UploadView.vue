@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     nextPage(event) {
-      console.log(event);
+      // console.log(event);
       let currentIdx = parseInt(this.$route.params.id) - 1;
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
@@ -88,12 +88,12 @@ export default {
       this.$router.push(this.items[currentIdx - 1].to);
     },
     complete() {
-      console.log(this.formObject);
+      // console.log(this.formObject);
     },
     async uploadSyllabus(event) {
       const store = usePostReviewStore(this.$pinia);
       const loginStatusStore = useLoginStatusStore(this.$pinia);
-      if (!store.course_id || !store.course_prof || !store.course_section || !store.syllabus_file){
+      if (!store.selected_course || !store.course_prof || !store.course_section || !store.syllabus_file){
         this.$toast.add({severity:'error', summary: 'Uploading failed', detail:'Please check if the course information is correct', life: 8000});
         return;
       }
@@ -109,7 +109,7 @@ export default {
       //   store.syllabus_file
       // );
       let syllabus_id = await apiService.uploadSyllabus(
-        store.course_id,
+        store.selected_course.to.split('/').at(-1),
         store.course_prof,
         store.course_section,
         store.syllabus_file,

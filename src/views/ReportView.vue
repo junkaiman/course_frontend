@@ -24,15 +24,32 @@ export default {
       category: null,
       issue: null,
       description: null,
-      categoryOptions: ["Out-of-date content", "False course/faculty information", "Missing course/faculty content",  "Inappropriate review content", "Inaccessible resource", "Other"],
+      categoryOptions: [
+        "Out-of-date content",
+        "False course/faculty information",
+        "Missing course/faculty content",
+        "Inappropriate review content",
+        "Inaccessible resource",
+        "Other",
+      ],
     };
   },
-    methods: {
-        handleSubmit() {
-            // open email
-            window.open(`mailto:junkaiman@outlook.com?subject=${this.category} - ${this.issue}&body=${this.description}`);
-        },
+  mounted() {
+    // console.log(this.$route.query.course_id);
+    if (this.$route.query.course_id) {
+      this.category = this.categoryOptions[1];
+      this.description = `Course ID: ${this.$route.query.course_id} (do not remove this line) \n`;
+    }
+
+  },
+  methods: {
+    handleSubmit() {
+      // open email
+      window.open(
+        `mailto:junkaiman@outlook.com?subject=${this.category} - ${this.issue}&body=${this.description}`
+      );
     },
+  },
 };
 </script>
 

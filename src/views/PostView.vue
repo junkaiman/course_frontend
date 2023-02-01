@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     nextPage(event) {
-      console.log(event);
+      // console.log(event);
       let currentIdx = parseInt(this.$route.params.id) - 1;
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
@@ -97,7 +97,7 @@ export default {
       const store = usePostReviewStore(this.$pinia);
       const loginStatusStore = useLoginStatusStore(this.$pinia);
       if (
-        !store.course_id ||
+        !store.selected_course ||
         !store.course_prof ||
         !store.course_section ||
         !store.rating_general ||
@@ -125,7 +125,7 @@ export default {
           return;
         }
         let review_id = await apiService.postReview(
-          store.course_id,
+          store.selected_course.to.split('/').at(-1),
           store.course_prof,
           store.course_section,
           store.rating_general,

@@ -2,8 +2,9 @@
   <div class="card prompt3">
     <div class="p-fluid">
       <label for="">🔍 Search Course</label>
+      <!-- v-model="selectedCourse" -->
       <AutoComplete
-        v-model="selectedCourse"
+        v-model="selected_course"
         placeholder="Search"
         :suggestions="filteredCourses"
         @complete="searchCourse($event)"
@@ -17,14 +18,14 @@
   </div>
   <div class="card prompt2">
     <div class="p-fluid">
-      <label for="" disabled>Course Code</label>
+      <!-- <label for="" disabled>Course Code</label>
       <InputText v-model="course_code" disabled></InputText>
       <label for="">Course Name</label>
-      <InputText v-model="course_name" disabled></InputText>
+      <InputText v-model="course_name" disabled></InputText> -->
       <label for="">Professor</label>
       <AutoComplete
         v-model="course_prof"
-        placeholder=""
+        placeholder="Search"
         :suggestions="filteredProfs"
         @complete="searchProf($event)"
         @item-select="onProfSelect($event)"
@@ -45,7 +46,7 @@ import { storeToRefs } from "pinia";
 import { usePostReviewStore } from "../../stores/post_review";
 import NodeService from "../../service/NodeService";
 const store = usePostReviewStore();
-const { course_code, course_name, course_prof, course_section } =
+const { course_code, course_name, course_prof, course_section, selected_course } =
   storeToRefs(store);
 </script>
 
@@ -87,10 +88,15 @@ export default {
           this.filteredCourses = [...this.courses];
         } else {
           let tmp = [];
+          let tmp_labels = []
           this.courses.forEach((course) => {
             course.items.forEach((item) => {
-              if (item.label.toLowerCase().includes(event.query.toLowerCase()))
-                tmp.push(item);
+              if (item.label.toLowerCase().includes(event.query.toLowerCase())) {
+                if (tmp_labels.indexOf(item.label) === -1) {
+                  tmp.push(item);
+                  tmp_labels.push(item.label);
+                }
+              }
             });
           });
           this.filteredCourses = tmp;
@@ -113,12 +119,14 @@ export default {
     },
     onCourseSelect(event) {
       const store = usePostReviewStore(this.$pinia);
-      const [course_code, ...rest] = event.value.label.split(" - ");
-      const course_name = rest.join(" - ");
-      const course_id = event.value.to.split('/').at(-1)
-      store.course_id = course_id;
-      store.course_code = course_code;
-      store.course_name = course_name;
+      // const [course_code, ...rest] = event.value.label.split(" - ");
+      // const course_name = rest.join(" - ");
+      // const course_id = event.value.to.split('/').at(-1)
+      // store.course_id = course_id;
+      // store.course_code = course_code;
+      // store.course_name = course_name;
+      store.selected_course = event.value;
+      // console.log(store)
     },
     onProfSelect(event) {
       const store = usePostReviewStore(this.$pinia);

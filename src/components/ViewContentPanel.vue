@@ -6,44 +6,55 @@ import ReviewCard from "../components/ReviewCard.vue";
 <template>
   <div class="container">
     <div class="info">
-      <Fieldset legend="COMPSCI 101 - Introduction to Computer Science">
+      <Button
+        label="Report"
+        class="p-button-rounded p-button-secondary"
+        icon="pi pi-flag"
+        style="display: block; margin-inline-start: auto"
+        @click="reportCourse"
+      />
+      <Fieldset :legend="course_name">
         <div class="description">
           <b>What is it about?</b>
           <br />
-          COMPSCI 101 is an introduction to computer science course designed to
-          provide a foundational understanding of the field. Students will learn
-          basic concepts such as algorithms, data structures, and computer
-          architecture. The course will also introduce students to programming
-          and problem-solving techniques. Through lectures, hands-on lab
-          assignments, and projects, students will gain a broad overview of the
-          field of computer science and its applications. This course is ideal
-          for students with little or no programming experience who are
-          interested in exploring the field of computer science.
+          {{ course_description }}
         </div>
-        <div class="faculties">
+        <!-- <div class="faculties">
           <b>Who have taught this class?</b>
           <br />
           <Chip class="chip-button" label="John Doe" />
           <Chip class="chip-button" label="Amy Liu" />
-        </div>
+        </div> -->
       </Fieldset>
     </div>
     <div class="resources">
       <Fieldset legend="Resources" :toggleable="true">
-        <Button class="p-button-secondary">📄 Syllabus (2020 Fall)</Button>
-        <Button class="p-button-secondary">📄 Syllabus (2021 Fall)</Button>
+        <span v-for="syllabus in course_syllabus" :key="syllabus._id">
+          <Button
+            :label="'📄 Syllabus: ' + syllabus.course_section"
+            class="p-button-secondary"
+            @click="redirect(syllabus.filename)"
+          />
+        </span>
       </Fieldset>
     </div>
     <div class="stats">
       <Fieldset legend="Statistics" :toggleable="true">
-        <div style="display: flex; flex-direction: row; align-items: center">
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            filter: blur(10px);
+          "
+        >
           <StatsChart />
         </div>
       </Fieldset>
     </div>
     <div class="reviews">
       <Fieldset legend="Reviews" :toggleable="true" :collapsed="false">
-        <Accordion>
+        <Accordion style="filter: blur(10px);">
           <AccordionTab>
             <template #header>
               <i class="pi pi-user"></i> &nbsp;
@@ -66,17 +77,61 @@ import ReviewCard from "../components/ReviewCard.vue";
   </div>
 </template>
 
+<script>
+import apiService from "../service/apiService";
+import { useLoginStatusStore } from "../stores/login_status";
+
+export default {
+  data() {
+    return {
+      course_name: "Loading...",
+      course_description: "Loading...",
+      course_syllabus: [],
+      course_reviews: [],
+    };
+  },
+  methods: {
+    redirect(filename) {
+      window.open('/data/' + filename, '_blank')
+    },
+    reportCourse() {
+      this.$router.push({path: '/report', query: {course_id: this.$route.params.id}})
+    }
+  },
+  watch: {
+    $route: {
+      handler: function (to, from) {
+        const store = useLoginStatusStore(this.$pinia);
+        apiService
+          .getCourse(store.access_token, to.params.id)
+          .then((response) => {
+            if (response) {
+              this.course_name = response.course_info.name;
+              this.course_description = response.course_info.description;
+              this.course_syllabus = response.course_syllabus;
+              this.course_reviews = response.course_reviews;
+            } else {
+              console.log("ERRRORR");
+            }
+          });
+      },
+      immediate: true,
+    },
+  },
+};
+</script>
+
 <style scoped>
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 1rem;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 1rem;
+  width: 100%;
 }
 
 .container > div {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 Button {
   margin: 0 0.15rem;

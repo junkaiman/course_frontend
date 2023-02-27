@@ -134,7 +134,7 @@ export default {
   margin: 1rem 0;
 }
 Button {
-  margin: 0 0.15rem;
+  margin: 0.1rem
   /* padding: 3rem; */
 }
 
